@@ -13,8 +13,8 @@ export default defineConfig((options: Options) => ({
       js: '"use client"',
     };
   },
-  dts: true,
-  minify: true,
+  dts: false,
+  minify: !process.env.VERCEL,
   external: ["react"],
   ...options,
 }));
