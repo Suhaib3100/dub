@@ -54,6 +54,14 @@ module.exports = withAxiom({
       config.plugins = [...config.plugins, new PrismaPlugin()];
     }
 
+    // Optimize build speed on Vercel
+    if (!isServer) {
+      config.optimization = {
+        ...config.optimization,
+        minimize: !process.env.VERCEL,
+      };
+    }
+
     config.module = {
       ...config.module,
       exprContextCritical: false,
